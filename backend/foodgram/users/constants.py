@@ -1,0 +1,15 @@
+MAX_CODE_LENGHT = 6
+
+MAX_NAME_LENGHT = 150
+
+MAX_EMAIL_LENGHT = 254
+
+ADMIN = 'admin'
+
+MODERATOR = 'moderator'
+
+USER = 'user'
+
+USERNAME_ME = 'me'
+
+REGULAR_CHECK_LOGIN_VALID = r'^[\w.@+-]+\Z'
