@@ -25,7 +25,7 @@ services:
     volumes:
       - static:/frontend_static
   nginx:
-    image: kramik/foodgram_nginx
+    image: kramik/foodgram_gateway
     env_file: .env
     ports:
       - 9000:80
