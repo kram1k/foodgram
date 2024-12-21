@@ -1,14 +1,14 @@
+import os
 
-from datetime import timedelta
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-3zfs0l6#(!4p6ot+z6-#5-%^=b^4lg-6pn0_&q)e*bt^upw^#-'
+SECRET_KEY = ('SECRET_KEY', 'django-insecure-3zfs0l6#(!4p6ot+z6-#5-%^=b^4lg-6pn0_&q)e*bt^upw^#-')
 
-DEBUG = True
+DEBUG = os.getenv('DEBUG', '').lower() == 'true'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
 
 
 INSTALLED_APPS = [
@@ -18,6 +18,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_filters',
     'rest_framework.authtoken',
     'rest_framework',
     'djoser',
@@ -43,7 +44,7 @@ AUTH_USER_MODEL = 'users.User'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -60,8 +61,12 @@ WSGI_APPLICATION = 'foodgram.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': os.getenv('DB_ENGINE', default='django.db.backends.postgresql'),
+        'NAME': os.getenv('POSTGRES_DB', default='django'),
+        'USER': os.getenv('POSTGRES_USER', default='django'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', default=''),
+        'HOST': os.getenv('DB_HOST', default=''),
+        'PORT': os.getenv('DB_PORT', default=5432)
     }
 }
 
@@ -91,9 +96,14 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10,
 }
 
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
-    'AUTH_HEADER_TYPES': ('Bearer',),
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'collected_static'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = '/media'
+
+DJOSER = {
+    'LOGIN_FIELD': 'email',
 }
 
 LANGUAGE_CODE = 'en-us'
@@ -109,9 +119,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-EMAIL_FILE_PATH = BASE_DIR / 'sent_emails'
 
 DEFAULT_FROM_EMAIL = 'from@example.com'

@@ -9,3 +9,4 @@ UNIT_MEASURES = (
     ('SM', 'Small spoon'),
     ('LS', 'Large spoon'),
 )
+MIN_AMOUNT_ING = 1
