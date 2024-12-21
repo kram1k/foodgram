@@ -13,10 +13,12 @@ services:
     volumes:
       - pg_data:/var/lib/postgresql/data
   frontend:
-    container_name: foodgram-front
-    build: ../frontend
+    build:
+      context: ../frontend
+      dockerfile: Dockerfile
+    command: cp -r /app/build/. /frontend_static/
     volumes:
-      - ../frontend/:/app/result_build/
+      - static:/frontend_static
   nginx:
     container_name: foodgram-proxy
     image: nginx:1.25.4-alpine
