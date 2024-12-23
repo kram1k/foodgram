@@ -29,7 +29,6 @@ jobs:
         pip install -r ./backend/requirements.txt
     - name: Test with flake8 and django tests
       env:
-        DB_ENGINE:  ${{ secrets.DB_ENGINE }}
         POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
         POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
         POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
