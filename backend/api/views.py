@@ -39,7 +39,7 @@ from .serializers import (
 
 class UserViewSet(CreateListRetrieveViewSet):
     """Представление для работы с пользователями."""
-    queryset = User.objects.all()
+    queryset = User.objects.get_queryset().order_by('id')
     serializer_class = UserSerializer
     permission_classes = (permissions.AllowAny,)
     pagination_class = PageNumberPagination
