@@ -1,28 +1,22 @@
 from django.urls import include, path
-from rest_framework import routers
+from rest_framework.routers import DefaultRouter
 
 from .views import (
-    CustomTokenCreateView,
+    UserViewSet,
     IngredientViewSet,
     RecipeViewSet,
-    TagViewSet,
-    UserViewSet
+    TagViewSet
 )
 
 app_name = 'api'
+router = DefaultRouter()
 
-router = routers.DefaultRouter()
-router.register(r'users', UserViewSet, basename='users')
-router.register(r'ingredients', IngredientViewSet, basename='ingredient')
-router.register(r'tags', TagViewSet, basename='tag')
-router.register(r'recipes', RecipeViewSet, basename='recipe')
+router.register('recipes', RecipeViewSet, basename='recipes')
+router.register('tags', TagViewSet, basename='tags')
+router.register('ingredients', IngredientViewSet, basename='ingredients')
+router.register('users', UserViewSet, basename='users')
 
-
-urlpatterns = [
-    path(
-        'auth/token/login/',
-        CustomTokenCreateView.as_view(),
-        name='create_token'),
-    path('auth/', include('djoser.urls.authtoken'), name='token'),
+urlpatterns = (
     path('', include(router.urls)),
-]
+    path('auth/', include('djoser.urls.authtoken')),
+)
