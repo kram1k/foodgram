@@ -2,7 +2,7 @@ from io import BytesIO
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
-from django.db.models import Sum, Prefetch
+from django.db.models import Prefetch, Sum
 from django.http import FileResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse
@@ -11,44 +11,27 @@ from djoser.views import UserViewSet as DjoserUserViewSet
 from reportlab.lib import enums, pagesizes, styles
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
-from reportlab.platypus import (
-    ListFlowable,
-    ListItem,
-    Paragraph,
-    SimpleDocTemplate
-)
+from reportlab.platypus import (ListFlowable, ListItem, Paragraph,
+                                SimpleDocTemplate)
 from rest_framework import status, viewsets
 from rest_framework.decorators import action
-from rest_framework.permissions import IsAuthenticatedOrReadOnly, AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework.settings import api_settings
 
-from recipes.models import (
-    Favorite,
-    Ingredient,
-    Recipe,
-    RecipeIngredient,
-    ShoppingCart,
-    Tag
-)
+from recipes.models import (Favorite, Ingredient, Recipe, RecipeIngredient,
+                            ShoppingCart, Tag)
 from recipes.utils import generate_unique_short_link_code
 from users.models import Subscription
 
 from .filters import IngredientFilter, RecipeFilter
 from .permissions import IsAuthorOrReadOnly
-from .serializers import (
-    AuthorSerializer,
-    RecipesLimitSerializer,
-    FavoriteSerializer,
-    IngredientSerializer,
-    RecipeReadSerializer,
-    SubscriptionSerializer,
-    UserAvatarSerializer,
-    RecipeShortReadSerializer,
-    RecipeWriteSerializer,
-    ShoppingCartSerializer,
-    TagSerializer,
-)
+from .serializers import (AuthorSerializer, FavoriteSerializer,
+                          IngredientSerializer, RecipeReadSerializer,
+                          RecipeShortReadSerializer, RecipesLimitSerializer,
+                          RecipeWriteSerializer, ShoppingCartSerializer,
+                          SubscriptionSerializer, TagSerializer,
+                          UserAvatarSerializer)
 
 User = get_user_model()
 

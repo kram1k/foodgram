@@ -4,18 +4,11 @@ from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
 from core.constants import PARAM_RECIPES_LIMIT_MIN_VALUE
-from core.serializers import BaseUserSerializer
 from core.fields import Base64ImageField
+from core.serializers import BaseUserSerializer
+from recipes.models import (Favorite, Ingredient, Recipe, RecipeIngredient,
+                            ShoppingCart, Tag)
 from users.models import Subscription
-from recipes.models import (
-    Favorite,
-    Ingredient,
-    Recipe,
-    RecipeIngredient,
-    ShoppingCart,
-    Tag
-)
-
 
 User = get_user_model()
 

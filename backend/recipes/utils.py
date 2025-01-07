@@ -1,10 +1,8 @@
 import secrets
 from textwrap import shorten
 
-from core.constants import (
-    OBJECT_NAME_MAX_DISPLAY_LENGTH,
-    RECIPE_SHORT_LINK_CODE_MAX_LENGTH
-)
+from core.constants import (OBJECT_NAME_MAX_DISPLAY_LENGTH,
+                            RECIPE_SHORT_LINK_CODE_MAX_LENGTH)
 
 
 def generate_unique_short_link_code():

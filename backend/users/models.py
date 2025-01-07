@@ -6,11 +6,8 @@ from django.db import models
 
 from recipes.utils import make_relation_name
 
-from .constants import (
-    OBJECT_NAME_MAX_DISPLAY_LENGTH,
-    USER_EMAIL_MAX_LENGTH,
-    USER_NAME_MAX_LENGTH
-)
+from .constants import (OBJECT_NAME_MAX_DISPLAY_LENGTH, USER_EMAIL_MAX_LENGTH,
+                        USER_NAME_MAX_LENGTH)
 
 
 class User(AbstractUser):

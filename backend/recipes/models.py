@@ -4,17 +4,14 @@ from django.contrib.auth import get_user_model
 from django.core.validators import MinValueValidator
 from django.db import models
 
-from core.constants import (
-    INGREDIENT_MEASUREMENT_UNIT_MAX_LENGTH,
-    INGREDIENT_NAME_MAX_LENGTH,
-    OBJECT_NAME_MAX_DISPLAY_LENGTH,
-    RECIPE_COOKING_TIME_MIN_VALUE,
-    RECIPE_INGREDIENT_AMOUNT_MIN_VALUE,
-    RECIPE_NAME_MAX_LENGTH,
-    RECIPE_SHORT_LINK_CODE_MAX_LENGTH,
-    TAG_NAME_MAX_LENGTH,
-    TAG_SLUG_MAX_LENGTH
-)
+from core.constants import (INGREDIENT_MEASUREMENT_UNIT_MAX_LENGTH,
+                            INGREDIENT_NAME_MAX_LENGTH,
+                            OBJECT_NAME_MAX_DISPLAY_LENGTH,
+                            RECIPE_COOKING_TIME_MIN_VALUE,
+                            RECIPE_INGREDIENT_AMOUNT_MIN_VALUE,
+                            RECIPE_NAME_MAX_LENGTH,
+                            RECIPE_SHORT_LINK_CODE_MAX_LENGTH,
+                            TAG_NAME_MAX_LENGTH, TAG_SLUG_MAX_LENGTH)
 
 from .utils import make_relation_name
 

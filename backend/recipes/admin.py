@@ -3,14 +3,8 @@ from django.forms.models import BaseInlineFormSet
 from django.urls import reverse
 from django.utils.html import format_html
 
-from .models import (
-    Favorite,
-    Ingredient,
-    Recipe,
-    RecipeIngredient,
-    ShoppingCart,
-    Tag
-)
+from .models import (Favorite, Ingredient, Recipe, RecipeIngredient,
+                     ShoppingCart, Tag)
 
 
 class RecipeIngredientFormSet(BaseInlineFormSet):
