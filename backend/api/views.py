@@ -86,8 +86,6 @@ class UserViewSet(DjoserUserViewSet):
             'recipes_limit'
         )
         recipes_queryset = Recipe.objects.all()
-        if recipes_limit:
-            recipes_queryset = recipes_queryset[:recipes_limit]
         author = get_object_or_404(
             User.objects.filter(id=id).prefetch_related(
                 Prefetch(
@@ -97,6 +95,8 @@ class UserViewSet(DjoserUserViewSet):
                 )
             )
         )
+        if recipes_limit:
+            recipes_queryset = recipes_queryset[:recipes_limit]
         subscription_serializer = SubscriptionSerializer(
             data={'author': author.id}, context={'request': request}
         )
@@ -129,8 +129,6 @@ class UserViewSet(DjoserUserViewSet):
             'recipes_limit'
         )
         recipes_queryset = Recipe.objects.all()
-        if recipes_limit:
-            recipes_queryset = recipes_queryset[:recipes_limit]
         authors = User.objects.filter(
             subscription_users__user=request.user
         ).prefetch_related(
@@ -140,6 +138,8 @@ class UserViewSet(DjoserUserViewSet):
                 to_attr='limited_recipes'
             )
         )
+        if recipes_limit:
+            recipes_queryset = recipes_queryset[:recipes_limit]
         paginator = api_settings.DEFAULT_PAGINATION_CLASS()
         authors = paginator.paginate_queryset(authors, request)
         return paginator.get_paginated_response(
