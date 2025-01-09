@@ -19,8 +19,7 @@ services:
     depends_on:
       db:
         condition: service_started
-    restart: always 
-      - db
+    restart: always
   frontend:
     image: kramik/foodgram_frontend
     command: cp -r /app/build/. /static/
