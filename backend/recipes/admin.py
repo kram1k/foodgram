@@ -8,6 +8,7 @@ from api.contsants import MIN_AMOUNT
 from .models import (Favorite, Ingredient, Recipe, RecipeIngredient,
                      ShoppingCart, Tag)
 
+
 class RecipeIngredientFormSet(BaseInlineFormSet):
     def clean(self):
         super().clean()
@@ -27,6 +28,7 @@ class RecipeIngredientInline(admin.TabularInline):
     formset = RecipeIngredientFormSet
     extra = 0
     min_num = MIN_AMOUNT
+
 
 @admin.register(Recipe)
 class RecipeAdmin(admin.ModelAdmin):
