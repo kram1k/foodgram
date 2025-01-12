@@ -1,7 +1,7 @@
 from textwrap import shorten
 
 from django.contrib.auth import get_user_model
-from django.core.validators import MinValueValidator
+from django.core.validators import MaxLengthValidator, MinValueValidator
 from django.db import models
 
 from core.constants import (INGREDIENT_MEASUREMENT_UNIT_MAX_LENGTH,
@@ -10,6 +10,7 @@ from core.constants import (INGREDIENT_MEASUREMENT_UNIT_MAX_LENGTH,
                             RECIPE_COOKING_TIME_MIN_VALUE,
                             RECIPE_INGREDIENT_AMOUNT_MIN_VALUE,
                             RECIPE_NAME_MAX_LENGTH,
+                            RECIPE_TEXT_MAX_LENGTH,
                             RECIPE_SHORT_LINK_CODE_MAX_LENGTH,
                             TAG_NAME_MAX_LENGTH, TAG_SLUG_MAX_LENGTH)
 
@@ -78,15 +79,27 @@ class Recipe(models.Model):
     )
     name = models.CharField(
         verbose_name='Название',
-        max_length=RECIPE_NAME_MAX_LENGTH,
-        unique=True
+        max_length=150,
+        unique=True,
+        validators=[
+            MaxLengthValidator(
+                limit_value=RECIPE_NAME_MAX_LENGTH,
+                message='Максимальная длина названия рецепта - 150 символов.',
+            )
+        ]
     )
     image = models.ImageField(
         verbose_name='Изображение',
         upload_to='recipe_images'
     )
     text = models.TextField(
-        verbose_name='Описание'
+        verbose_name='Описание',
+        validators=[
+            MaxLengthValidator(
+                limit_value=RECIPE_TEXT_MAX_LENGTH,
+                message='Максимальное количество символов описания - 5000.',
+            )
+        ]
     )
     ingredients = models.ManyToManyField(
         Ingredient,
@@ -100,15 +113,12 @@ class Recipe(models.Model):
     cooking_time = models.PositiveSmallIntegerField(
         verbose_name='Время приготовления',
         help_text='В минутах',
-        validators=(
+        validators=[
             MinValueValidator(
-                RECIPE_COOKING_TIME_MIN_VALUE,
-                message=(
-                    'Время приготовления не может быть меньше '
-                    f'{RECIPE_COOKING_TIME_MIN_VALUE} минут.'
-                )
-            ),
-        )
+                limit_value=RECIPE_COOKING_TIME_MIN_VALUE,
+                message='Минимальное время приготовления - 10 минут.',
+            )
+        ]
     )
     short_link_code = models.CharField(
         verbose_name='Код короткой ссылки',

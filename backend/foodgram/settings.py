@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     'django_filters',
     'rest_framework',
     'rest_framework.authtoken',
+    'drf_spectacular',
     'djoser',
     'users',
     'recipes',
@@ -114,7 +115,15 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
     ),
-    'DEFAULT_PAGINATION_CLASS': 'api.pagination.PageNumberPagination'
+    'DEFAULT_PAGINATION_CLASS': 'api.pagination.PageNumberPagination',
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Foodgram API',
+    'DESCRIPTION': 'API для форума рецептов.',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
 }
 
 DJOSER = {

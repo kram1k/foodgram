@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib import admin
 from django.contrib.admin import display
-from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.templatetags.static import static
 from django.utils.html import format_html
 
@@ -48,7 +48,7 @@ class ShoppingCartInline(admin.TabularInline):
 
 
 @admin.register(User)
-class UserAdmin(UserAdmin):
+class UserAdmin(BaseUserAdmin):
     list_display = (
         'avatar_preview',
         'username',
@@ -75,7 +75,7 @@ class UserAdmin(UserAdmin):
         'is_active',
         'is_superuser'
     )
-    fieldsets = UserAdmin.fieldsets + (
+    fieldsets = BaseUserAdmin.fieldsets + (
         ('Дополнительная информация', {
             'fields': ('avatar',)
         }),
@@ -100,15 +100,15 @@ class UserAdmin(UserAdmin):
 
     @display(description='Подписок')
     def subscriptions_count(self, obj):
-        return Subscription.objects.filter(user=obj).count()
+        return obj.subscriptions.count()
 
     @display(description='Подписчиков')
     def subscribers_count(self, obj):
-        return Subscription.objects.filter(author=obj).count()
+        return obj.subscription_users.count()
 
     @display(description='Избранных рецептов')
     def favorite_recipes_count(self, obj):
-        return Favorite.objects.filter(user=obj).count()
+        return obj.favorites.count()
 
 
 @admin.register(Subscription)
