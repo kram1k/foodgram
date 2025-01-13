@@ -79,7 +79,7 @@ class Recipe(models.Model):
     )
     name = models.CharField(
         verbose_name='Название',
-        max_length=150,
+        max_length=RECIPE_NAME_MAX_LENGTH,
         unique=True,
         validators=[
             MaxLengthValidator(

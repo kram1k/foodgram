@@ -61,7 +61,7 @@ if DEBUG:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
+            'NAME': BASE_DIR / 'django_db',
         }
     }
 else:
@@ -70,9 +70,9 @@ else:
             'ENGINE': 'django.db.backends.postgresql',
             'HOST': os.getenv('DB_HOST', 'localhost'),
             'PORT': os.getenv('DB_PORT', 5432),
-            'NAME': os.getenv('POSTGRES_DB', 'postgres'),
-            'USER': os.getenv('POSTGRES_USER', 'postgres'),
-            'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'postgres')
+            'NAME': os.getenv('POSTGRES_DB', 'django_user'),
+            'USER': os.getenv('POSTGRES_USER', 'django_user'),
+            'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'django_password')
         }
     }
 
@@ -106,6 +106,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
