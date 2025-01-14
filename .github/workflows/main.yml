@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     services:
       postgres:
-        image: postgres:13.10
+        image: postgres:13.16
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: django_password
@@ -30,7 +30,7 @@ jobs:
         POSTGRES_USER: postgres
         POSTGRES_PASSWORD: django_password
         POSTGRES_DB: django_db
-        DB_HOST: db
+        DB_HOST: 127.0.0.1
         DB_PORT: 5432
   
   build_and_push_to_docker_hub:
