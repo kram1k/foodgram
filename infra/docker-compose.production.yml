@@ -5,10 +5,10 @@ volumes:
 
 services:
   db:
-    image: postgres:13.16
+    image: postgres:13
     env_file: .env
     volumes:
-      - pg_data:/var/lib/postgresql/data/
+      - pg_data_production:/var/lib/postgresql/data/
     restart: always
   backend:
     image: kramik/foodgram_backend
