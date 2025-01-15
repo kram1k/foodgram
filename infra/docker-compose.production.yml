@@ -9,7 +9,6 @@ services:
     env_file: .env
     volumes:
       - pg_data_production:/var/lib/postgresql/data/
-    restart: always
   backend:
     image: kramik/foodgram_backend
     env_file: .env
@@ -19,7 +18,6 @@ services:
     depends_on:
       db:
         condition: service_started
-    restart: always
   frontend:
     image: kramik/foodgram_frontend
     command: cp -r /app/build/. /static/
@@ -37,4 +35,3 @@ services:
     depends_on:
       - backend
       - frontend
-    restart: always
