@@ -15,7 +15,8 @@ services:
       - static:/app/static/
       - media:/app/media/
     depends_on:
-      - db
+      - db:
+        condition: service_started
   frontend:
     build: ./frontend/
     volumes:
