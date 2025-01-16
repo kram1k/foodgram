@@ -23,7 +23,7 @@ services:
     volumes:
       - static:/static
   gateway:
-    image: nginx:1.19.3-alpine
+    image: kramik/foodgram_gateway
     ports:
       - 6000:80
     volumes:
