@@ -2,7 +2,6 @@ volumes:
   pg_data:
   static:
   media:
-
 services:
   db:
     image: postgres:13
@@ -23,8 +22,8 @@ services:
     command: cp -r /app/build/. /static/
     volumes:
       - static:/static
-  nginx:
-    image: nginx:1.19.3-alpine
+  gateway:
+    image: kramik/foodgram_gateway
     ports:
       - 6000:80
     volumes:
