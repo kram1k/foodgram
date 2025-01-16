@@ -24,12 +24,12 @@ services:
     volumes:
       - static:/static
   nginx:
-    image: nginx:1.19.3-alpine
+    image: kramik/foodgram_gateway
     ports:
       - 6000:80
     volumes:
-      - static:/usr/share/nginx/html
-      - media:/usr/share/nginx/html/media
+      - static:/static/
+      - media:/media/
     depends_on:
       - backend
       - frontend

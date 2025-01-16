@@ -21,7 +21,7 @@ services:
     volumes:
       - static:/app/result_build/build/
   gateway:
-    build: ./infra/
+    build: ./gateway/
     ports:
       - 8000:80
     volumes:
