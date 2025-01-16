@@ -22,7 +22,7 @@ services:
     command: cp -r /app/build/. /static/
     volumes:
       - static:/static
-  nginx:
+  gateway:
     image: kramik/foodgram_gateway
     ports:
       - 6000:80
