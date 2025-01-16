@@ -21,7 +21,7 @@ services:
     volumes:
       - static:/app/result_build/build/
   gateway:
-    build: ./gateway/
+    build: nginx:1.19.3-alpine
     ports:
       - 8000:80
     volumes:
