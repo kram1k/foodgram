@@ -21,9 +21,9 @@ services:
     volumes:
       - static:/app/result_build/build/
   gateway:
-    build: nginx:1.19.3-alpine
+    build: ./gateway/
     ports:
-      - 8000:80
+      - 6000:80
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
       - ./docs/:/usr/share/nginx/html/api/docs/
