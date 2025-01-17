@@ -24,7 +24,7 @@ services:
   gateway:
     image: kramik/foodgram_gateway
     ports:
-      - 80:80
+      - 6000:80
     volumes:
       - ./nginx.conf:/etc/nginx/sites-enabled/default
       - static:/app/static/
