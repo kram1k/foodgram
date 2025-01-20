@@ -8,5 +8,5 @@ class BaseUserSerializer(serializers.ModelSerializer):
         user = self.context['request'].user
         return (
             user.is_authenticated
-            and obj.subscription_users.filter(user=user).exists()
+            and obj.subscriptions.filter(user=user).exists()
         )
