@@ -21,7 +21,7 @@ services:
   frontend:
     build: ./frontend/
     volumes:
-      - static:/app/result_build/build/
+      - ../frontend/:/app/result_build/
   gateway:
     build: ./gateway/
     ports:

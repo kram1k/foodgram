@@ -22,7 +22,7 @@ services:
     image: kramik/foodgram_frontend
     command: cp -r /app/build/. /static/
     volumes:
-      - static:/static
+      - ../frontend/:/app/result_build/
   gateway:
     image: kramik/foodgram_gateway
     ports:
