@@ -112,7 +112,7 @@ jobs:
         username: ${{ secrets.USER }}
         key: ${{ secrets.SSH_KEY }}
         passphrase: ${{ secrets.SSH_PASSPHRASE }}
-        source: "gateway/docker-compose.production.yml"
+        source: "gateway/docker-compose.production.yml,gateway/nginx.conf"
         target: "foodgram/infra"
         strip_components: 1
     - name: Executing remote ssh commands to deploy
