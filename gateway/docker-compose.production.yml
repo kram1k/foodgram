@@ -1,7 +1,8 @@
 volumes:
   pg_data:
-  static:
-  media:
+  static_value:
+  media_value:
+  redoc:
 services:
   db:
     image: postgres:13
@@ -12,8 +13,9 @@ services:
     image: kramik/foodgram_backend
     env_file: .env
     volumes:
-      - static:/static/
-      - media:/app/media/
+      - static_value:/app/static/
+      - media_value:/app/media/
+      - redoc:/app/api/docs/
     depends_on:
       - db
   frontend:
@@ -27,8 +29,10 @@ services:
       - 6000:80
     volumes:
       - ./nginx.conf:/etc/nginx/sites-enabled/default
-      - static:/static/
-      - media:/app/media/
+      - ../frontend/build:/usr/share/nginx/html/
+      - static_value:/var/html/static/
+      - media_value:/var/html/media/
+      - redoc:/usr/share/nginx/html/api/docs/
     depends_on:
       - backend
       - frontend
