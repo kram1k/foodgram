@@ -25,7 +25,7 @@ services:
   gateway:
     build: ./gateway/
     ports:
-      - '80:80'
+      - 6000:80
     volumes:
       - ./nginx.conf:/etc/nginx/sites-enabled/default
       - ../frontend/build:/usr/share/nginx/html/
