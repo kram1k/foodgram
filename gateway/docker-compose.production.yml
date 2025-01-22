@@ -1,8 +1,7 @@
 volumes:
   pg_data:
-  static_value:
-  media_value:
-  redoc:
+  static:
+  media:
 services:
   db:
     image: postgres:13
