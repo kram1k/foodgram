@@ -113,7 +113,7 @@ class UserViewSet(DjoserUserViewSet):
         )
         recipes_queryset = Recipe.objects.all()
         authors = User.objects.filter(
-            subscription_users__user=request.user
+            subscribed_by__user=request.user
         ).prefetch_related(
             Prefetch(
                 'recipes',

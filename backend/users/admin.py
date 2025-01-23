@@ -104,11 +104,11 @@ class UserAdmin(BaseUserAdmin):
 
     @display(description='Подписчиков')
     def subscribers_count(self, obj):
-        return obj.subscription_users.count()
+        return obj.subscribed_by.count()
 
     @display(description='Избранных рецептов')
     def favorite_recipes_count(self, obj):
-        return obj.favorites.count()
+        return obj.favorite_recipes.count()
 
 
 @admin.register(Subscription)
