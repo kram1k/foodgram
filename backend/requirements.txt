@@ -14,3 +14,4 @@ python-dotenv==0.21.0
 reportlab==4.2.5
 drf-spectacular==0.28.0
 drf-spectacular-sidecar==2024.12.1
+django-debug-toolbar==3.2.3
