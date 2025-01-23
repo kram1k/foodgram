@@ -17,6 +17,7 @@ ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', default='127.0.0.1').split(',')
 INTERNAL_IPS = [
     # ...
     "127.0.0.1",
+    '51.250.107.234'
     # ...
 ]
 
